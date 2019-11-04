@@ -192,14 +192,14 @@ public class WFEventsLoader extends EventsLoader {
             /*if (je.get("organization_id") == null || je.get("organization_id").isJsonNull()) {
                 continue;
             }*/
-			// WFTeamInfo teamInfo = organizations.get(je.get("organization_id").getAsString());
+            // WFTeamInfo teamInfo = organizations.get(je.get("organization_id").getAsString());
 
             WFTeamInfo teamInfo = new WFTeamInfo(contest.problems.size());
-			teamInfo.name = je.get("name").getAsString();
-			if (je.get("organization_id") != null && !je.get("organization_id").isJsonNull()) {
-				teamInfo.name = "(" + organizations.get(je.get("organization_id").getAsString()) + ") " + teamInfo.name;
-			}
-			teamInfo.shortName = shortName(teamInfo.name);
+            teamInfo.name = je.get("name").getAsString();
+            if (je.get("organization_id") != null && !je.get("organization_id").isJsonNull()) {
+                teamInfo.name = "(" + organizations.get(je.get("organization_id").getAsString()) + ") " + teamInfo.name;
+            }
+            teamInfo.shortName = shortName(teamInfo.name);
 
             JsonArray groups = je.get("group_ids").getAsJsonArray();
             for (int j = 0; j < groups.size(); j++) {
@@ -216,9 +216,9 @@ public class WFEventsLoader extends EventsLoader {
                             get(0).getAsJsonObject().get("href").getAsString();
 
             teamInfo.cdsId = je.get("id").getAsString();
-			contest.teamInfos[i] = teamInfo;
+            contest.teamInfos[i] = teamInfo;
             contest.teamById.put(teamInfo.cdsId, teamInfo);
-		}
+        }
         Arrays.sort(contest.teamInfos, (a, b) -> compareAsNumbers(((WFTeamInfo) a).cdsId, ((WFTeamInfo) b).cdsId));
 
         for (int i = 0; i < contest.teamInfos.length; i++) {
